@@ -4,5 +4,6 @@ export * from "./DashboardApi";
 export * from "./MinerApi";
 export * from "./PrsApi";
 export * from "./ReposApi";
+export * from "./IssuesApi";
 
 export * from "./models";

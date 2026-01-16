@@ -27,3 +27,6 @@ export * from "./TopPRsPage";
 
 export { default as TopReposPage } from "./TopReposPage";
 export * from "./TopReposPage";
+
+export { default as IssuesPage } from "./IssuesPage";
+export * from "./IssuesPage";
