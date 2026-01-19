@@ -216,7 +216,7 @@ export const AboutContent: React.FC<AboutContentProps> = ({
                         maximumFractionDigits: 2,
                       },
                     )} monthly reward pool by making open source contributions.`
-                  : "Stop coding for free. Get paid in TAO for your open source contributions.",
+                  : "Stop coding for free. Get paid in Alpha for your open source contributions.",
               },
               {
                 icon: <VerifiedUserIcon fontSize="large" />,

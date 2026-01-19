@@ -9,6 +9,7 @@ import {
   LanguageWeight,
   CommitLog,
   PullRequestDetails,
+  ValidatorStatus,
 } from "./models/Dashboard";
 
 export const useDashboardQuery = <TResponse = void, TSelect = TResponse>(
@@ -85,3 +86,10 @@ export const useInfiniteCommitLog = (options?: {
     retry: false,
   });
 };
+
+export const useValidatorStatus = (options?: { refetchInterval?: number }) =>
+  useDashboardQuery<ValidatorStatus>(
+    "useValidatorStatus",
+    "/validator/status",
+    options?.refetchInterval,
+  );

@@ -15,11 +15,14 @@ import {
 } from "@mui/material";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
 import { IssueBounty } from "../../api/models/Issues";
+import { formatTokenAmount } from "../../utils/format";
+import BountyProgress from "./BountyProgress";
 
 interface IssuesListProps {
   issues: IssueBounty[];
   isLoading?: boolean;
   showCompleted?: boolean;
+  showAllStatuses?: boolean;
   onSelectIssue?: (id: number) => void;
 }
 
@@ -73,6 +76,7 @@ const IssuesList: React.FC<IssuesListProps> = ({
   issues,
   isLoading = false,
   showCompleted = false,
+  showAllStatuses = false,
   onSelectIssue,
 }) => {
   const headerCellSx = {
@@ -131,9 +135,11 @@ const IssuesList: React.FC<IssuesListProps> = ({
         elevation={0}
       >
         <Typography sx={{ color: "rgba(255, 255, 255, 0.5)" }}>
-          {showCompleted
-            ? "No completed issues yet"
-            : "No active issues available"}
+          {showAllStatuses
+            ? "No issues registered yet"
+            : showCompleted
+              ? "No completed issues yet"
+              : "No active issues available"}
         </Typography>
       </Card>
     );
@@ -160,6 +166,9 @@ const IssuesList: React.FC<IssuesListProps> = ({
               </TableCell>
               <TableCell sx={{ ...headerCellSx, textAlign: "right" }}>
                 Bounty
+              </TableCell>
+              <TableCell sx={{ ...headerCellSx, textAlign: "center", width: "120px" }}>
+                Funding
               </TableCell>
               <TableCell sx={{ ...headerCellSx, textAlign: "center" }}>
                 Status
@@ -241,8 +250,14 @@ const IssuesList: React.FC<IssuesListProps> = ({
                         color: "#3fb950",
                       }}
                     >
-                      {issue.bountyAmount} TAO
+                      {formatTokenAmount(issue.bountyAmount)} α
                     </Typography>
+                  </TableCell>
+                  <TableCell sx={{ ...bodyCellSx, textAlign: "center" }}>
+                    <BountyProgress
+                      bountyAmount={issue.bountyAmount}
+                      targetBounty={issue.targetBounty}
+                    />
                   </TableCell>
                   <TableCell sx={{ ...bodyCellSx, textAlign: "center" }}>
                     <Chip

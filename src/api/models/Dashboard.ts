@@ -251,3 +251,8 @@ export type PullRequestComment = {
   htmlUrl: string;
   authorAssociation: string;
 };
+
+export type ValidatorStatus = {
+  nextRunAt: string | null;
+  intervalMs: number;
+};

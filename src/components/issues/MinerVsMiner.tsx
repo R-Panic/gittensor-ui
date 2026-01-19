@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import { Competition, IssueBounty } from "../../api/models/Issues";
 import EloRatingBadge from "./EloRatingBadge";
+import { formatTokenAmount } from "../../utils/format";
 
 interface MinerVsMinerProps {
   competition: Competition;
@@ -134,7 +135,7 @@ const MinerVsMiner: React.FC<MinerVsMinerProps> = ({
         </Box>
         {issue && (
           <Chip
-            label={`${issue.bountyAmount} TAO`}
+            label={`${formatTokenAmount(issue.bountyAmount)} α`}
             size="small"
             sx={{
               fontFamily: '"JetBrains Mono", monospace',

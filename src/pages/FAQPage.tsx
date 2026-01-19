@@ -106,10 +106,10 @@ export const FAQContent: React.FC = () => {
           }
         />
         <FAQ
-          question="Do I need to stake TAO to become a miner?"
+          question="Do I need to stake Alpha to become a miner?"
           answer={
             <>
-              No, miners do not need to stake TAO to participate. However,
+              No, miners do not need to stake Alpha to participate. However,
               registering a miner UID on the subnet requires a registration fee
               (burn) in TAO, which fluctuates based on network demand. See the{" "}
               <a

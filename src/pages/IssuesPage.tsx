@@ -21,6 +21,7 @@ const IssuesPage: React.FC = () => {
   const statsQuery = useIssuesStats();
   const activeCompetitionsQuery = useActiveCompetitions();
   const eloLeaderboardQuery = useEloLeaderboard(25);
+  const allIssuesQuery = useIssues();
   const activeIssuesQuery = useIssues("active");
   const completedIssuesQuery = useIssues("completed");
 
@@ -32,7 +33,7 @@ const IssuesPage: React.FC = () => {
     <Page title="Issues Competition">
       <SEO
         title="Issues Competition"
-        description="Compete to solve GitHub issues and earn TAO bounties. View active competitions, ELO rankings, and available issues on Gittensor."
+        description="Compete to solve GitHub issues and earn Alpha bounties. View active competitions, ELO rankings, and available issues on Gittensor."
       />
       <Box
         sx={{
@@ -78,6 +79,7 @@ const IssuesPage: React.FC = () => {
                 },
               }}
             >
+              <Tab label="All Issues" />
               <Tab label="Active Competitions" />
               <Tab label="Available Issues" />
               <Tab label="ELO Leaderboard" />
@@ -88,25 +90,32 @@ const IssuesPage: React.FC = () => {
           {/* Tab Content */}
           <Box sx={{ minHeight: 400 }}>
             {tab === 0 && (
+              <IssuesList
+                issues={allIssuesQuery.data || []}
+                isLoading={allIssuesQuery.isLoading}
+                showAllStatuses
+              />
+            )}
+            {tab === 1 && (
               <ActiveCompetitions
                 competitions={activeCompetitionsQuery.data || []}
                 isLoading={activeCompetitionsQuery.isLoading}
               />
             )}
-            {tab === 1 && (
+            {tab === 2 && (
               <IssuesList
                 issues={activeIssuesQuery.data || []}
                 isLoading={activeIssuesQuery.isLoading}
               />
             )}
-            {tab === 2 && (
+            {tab === 3 && (
               <EloLeaderboard
                 data={eloLeaderboardQuery.data || []}
                 isLoading={eloLeaderboardQuery.isLoading}
                 title="Miner ELO Rankings"
               />
             )}
-            {tab === 3 && (
+            {tab === 4 && (
               <IssuesList
                 issues={completedIssuesQuery.data || []}
                 isLoading={completedIssuesQuery.isLoading}

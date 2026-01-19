@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, Skeleton, Box } from "@mui/material";
 import { IssuesStats } from "../../api/models/Issues";
 import KpiCard from "../dashboard/KpiCard";
+import { formatTokenAmount } from "../../utils/format";
 
 interface IssueStatsProps {
   stats?: IssuesStats;
@@ -50,14 +51,14 @@ const IssueStats: React.FC<IssueStatsProps> = ({ stats, isLoading = false }) => 
       <Grid item xs={6} sm={3}>
         <KpiCard
           title="Bounty Pool"
-          value={`${stats?.totalBountyPool ?? "0"} TAO`}
+          value={`${formatTokenAmount(stats?.totalBountyPool)} α`}
           subtitle="Total available"
         />
       </Grid>
       <Grid item xs={6} sm={3}>
         <KpiCard
           title="Total Payouts"
-          value={`${stats?.totalPayouts ?? "0"} TAO`}
+          value={`${formatTokenAmount(stats?.totalPayouts)} α`}
           subtitle="Paid to solvers"
         />
       </Grid>
